@@ -12,6 +12,8 @@ There are two loggers "main" It needs for log your data, and request/response lo
 `uvicorn --host=0.0.0.0 --port 8888 app.main:app --reload`
 
 ## Example answers
+Two records created. \
+First is from `logger.info("Got /")`
 ```json
 {
     "thread": 459014,
@@ -24,6 +26,9 @@ There are two loggers "main" It needs for log your data, and request/response lo
     "app_env": "dev",
     "duration": 649
 }
+```
+Another from Middleware
+```json
 {
     "thread": 459014,
     "level_name": "Information",
