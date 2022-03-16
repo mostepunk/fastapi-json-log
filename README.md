@@ -73,3 +73,20 @@ Another from Middleware
     "response_body": "{\"answer\":\"I am Root\"}"
 }
 ```
+
+## Project Structure
+
+```
+.
+├── app
+│   ├── core
+│   │   ├── logging.py      - config logger object
+│   │   ├── middleware.py   - Middleware
+│   │   └── settings.py     - settings for app
+│   ├── __init__.py
+│   ├── main.py
+│   └── schemas
+│       └── json_logs.py    - Pydantic Schemas for main logger & Middleware log
+├── example_log.json
+└── README.md
+```
