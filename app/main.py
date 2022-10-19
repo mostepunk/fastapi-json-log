@@ -11,7 +11,8 @@ def get_application() -> FastAPI:
     application = FastAPI(
         title=app_settings.PROJECT_NAME,
         debug=app_settings.DEBUG,
-        version=app_settings.VERSION
+        version=app_settings.VERSION,
+        docs_url="/api/docs"
     )
 
     application.add_middleware(

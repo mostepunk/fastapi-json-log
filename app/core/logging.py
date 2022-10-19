@@ -20,6 +20,7 @@ LEVEL_TO_NAME = {
     logging.DEBUG: 'Debug',
     logging.NOTSET: 'Trace',
 }
+FILE_PATH = "fastapi.json"
 
 
 class ConsoleLogger(logging.Handler):
@@ -118,11 +119,16 @@ class JSONLogFormatter(logging.Formatter):
         return json_log_object
 
 
-def handlers(env):
+def handlers(env, to_file=False):
     if env.lower() in ('prod', 'dev'):
-        return ['json']
+        handler = ['json']
     else:
-        return ['intercept']
+        handler = ['intercept']
+
+    if to_file:
+        handler.append('file_handler')
+
+    return handler
 
 
 LOG_HANDLER = handlers(app_settings.ENVIRONMENT)
@@ -145,6 +151,12 @@ LOG_CONFIG = {
         'intercept': {
             '()': ConsoleLogger,
         },
+        'file_handler': {
+            'level': 'INFO',
+            'filename': FILE_PATH,
+            'class': 'logging.FileHandler',
+            'formatter': 'json'
+        }
     },
     'loggers': {
         'main': {
